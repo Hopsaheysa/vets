@@ -1,1 +1,78 @@
+* {
+  box-sizing: border-box;
+}
 
+form {
+  max-width: 400px;
+}
+
+.form-group {
+  margin-bottom: 1em;
+  display: flex;
+  flex-direction: column;
+}
+.form-group__input {
+  display: flex;
+  flex-direction: column;
+}
+
+html {
+  margin: 0;
+  padding: 0;
+  font-family: "Goudy Bookletter 1911", serif;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  background-color: #ede280;
+  color: black;
+}
+
+header nav {
+  padding: 1em;
+  background-color: rgba(124, 117, 49, 0.932);
+  display: flex;
+  justify-content: space-around;
+}
+header nav a {
+  color: rgba(255, 255, 255, 0.774);
+  font-size: 150%;
+}
+header nav a.current {
+  text-decoration: none;
+}
+
+.home {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+h1 {
+  font-size: 500%;
+}
+
+.welcome {
+  font-size: 170%;
+}
+
+.owner--page {
+  font-size: 110%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.owner--page h1 {
+  margin: 0;
+}
+
+.pet {
+  font-size: 150%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+/*# sourceMappingURL=style.css.map*/

@@ -1,0 +1,62 @@
+* {
+    box-sizing: border-box;
+}
+@import "forms.scss";
+html {
+    margin: 0;
+    padding: 0;
+    font-family: "Goudy Bookletter 1911", serif;
+}
+body {
+    margin: 0;
+    padding: 0;
+    background-color: rgb(237, 226, 128);
+    color: black;
+}
+header {
+    nav {
+        padding: 1em;
+        background-color: rgba(124, 117, 49, 0.932);
+        display: flex;
+        justify-content: space-around;
+        a {
+            color: rgba(255, 255, 255, 0.774);
+            font-size: 150%;
+            &.current {
+                text-decoration: none;
+            }
+        }
+    }
+}
+
+.home {
+    display:flex;
+    flex-direction: column;
+align-items: center;
+}
+
+h1 {
+    font-size: 500%;
+}
+
+.welcome {
+    font-size: 170%;
+}
+
+.owner--page {
+    font-size: 110%;
+    display:flex;
+    flex-direction: column;
+align-items: center;
+    h1 {
+    margin:0;
+}
+}
+
+.pet {
+    font-size: 150%;
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}

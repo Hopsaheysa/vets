@@ -10,21 +10,21 @@ require('dotenv').config();
  | file for the application as well as bundling up all the JS files.
  |
  */
- 
+
 mix.options({
     processCssUrls: false
 });
- 
+
 if (!mix.inProduction()) {
     mix.webpackConfig({
         devtool: 'source-map'
     })
-    .sourceMaps()
+        .sourceMaps()
 }
- 
+
 // define what you want to compile and how:
-mix.css('resources/css/style.css', 'public/css')
- 
+mix.sass('resources/css/style.scss', 'public/css')
+
     .browserSync({
         host: 'localhost',
         port: 3000,
@@ -32,6 +32,6 @@ mix.css('resources/css/style.css', 'public/css')
             target: process.env.APP_URL // Yay! Using APP_URL from the .env file!
         }
     });
- 
+
 // add versioning 
 mix.version();
