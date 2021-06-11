@@ -23,7 +23,7 @@ if (!mix.inProduction()) {
 }
  
 // define what you want to compile and how:
-mix.sass('resources/sass/app.scss', 'public/css')
+mix.css('resources/css/style.css', 'public/css')
  
     .browserSync({
         host: 'localhost',

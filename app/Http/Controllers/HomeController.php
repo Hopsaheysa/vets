@@ -3,9 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Owner;
 
-class OwnerController extends Controller
+class HomeController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,8 +13,7 @@ class OwnerController extends Controller
      */
     public function index()
     {
-        $owners = Owner::orderBy('surname')->get();
-        return view('owners.index', compact("owners"));
+        return view('layouts.index');
     }
 
     /**
@@ -23,15 +21,9 @@ class OwnerController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function show_search_form()
+    public function create()
     {
-        return view('owners.search_form');
-    }
-
-    public function search_owner(Request $request)
-    {
-        $results = Owner::where('surname', 'like', '%' . $request->input('surname') . '%' )->orderBy('surname', 'asc')->get();
-        return view('owners.search_owner', compact('results'));
+        //
     }
 
     /**
@@ -53,7 +45,7 @@ class OwnerController extends Controller
      */
     public function show($id)
     {
-        
+        //
     }
 
     /**

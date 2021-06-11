@@ -1,19 +1,15 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
-</head>
-<body>
+@extends('layouts.main', [
+    'title' => 'Owners'
+])
+
+@section ('content')
     <ul>    
         @foreach ($owners as $owner)
-            
-            <a href=""><li>{{$owner->first_name}} {{$owner->surname}}</li></a>
+            <div class="owners">
+            <a href={{action('PetController@find_owners_pets', [$owner->id])}}><li>{{$owner->first_name}} {{$owner->surname}}</li></a>
+            </div>
         @endforeach
 
 
     </ul>
-</body>
-</html>
+@endsection

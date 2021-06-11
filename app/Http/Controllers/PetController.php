@@ -16,7 +16,7 @@ class PetController extends Controller
     public function index()
     {
         $pets = Pet::orderBy('name')->limit(20)->get();
-        // var_dump($pets);
+    
         return view('pets.index', compact("pets"));
     }
 
@@ -38,7 +38,7 @@ class PetController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        
     }
 
     /**
@@ -47,9 +47,11 @@ class PetController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function find_owners_pets($owner_id)
     {
-        //
+        $pets = Pet::where('owner_id', $owner_id)->get();
+        $owner = Owner::find($owner_id);
+        return view('owners.owner_pets', compact('pets', 'owner'));
     }
 
     /**

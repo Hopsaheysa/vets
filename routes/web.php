@@ -19,3 +19,10 @@ Route::get('/', function () {
 
 Route::get("/pets", "PetController@index");
 Route::get("/owners", "OwnerController@index");
+Route::get("/home", "HomeController@index");
+Route::get("/owners/{owner_id}", "PetController@find_owners_pets");
+Route::get("/search", 'OwnerController@show_search_form');
+Route::post("/result", "OwnerController@search_owner");
+
+
+
