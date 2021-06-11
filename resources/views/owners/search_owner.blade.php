@@ -13,6 +13,11 @@
         <div>Home address:{{$result->home_address}}</div>
         <div>Email:{{$result->email}}</div>
         <div>Phone:{{$result->phone}}</div>
+        <a href="{{action('OwnerController@edit', [$result->id])}}">Edit Owner</a>
+
+        <br>
+        <a href="{{action('PetController@create', [$result->id])}}">Add Pet</a>
+        <br>
         <img src="face.jpeg" alt="owner image">
     @endforeach
 @endsection

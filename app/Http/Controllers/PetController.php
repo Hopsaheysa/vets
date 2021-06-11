@@ -8,45 +8,47 @@ use App\Models\Owner;
 
 class PetController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+
     public function index()
     {
         $pets = Pet::orderBy('name')->limit(20)->get();
-    
+        
         return view('pets.index', compact("pets"));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
+    public function create($id)
     {
-        //
+      $pet = new Pet;
+    
+      return view('pets.create', compact('pet', 'id'));  
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
+ 
     public function store(Request $request)
     {
-        
+       
+         $this->validate($request, [
+            'name' => 'required|min:1',
+            'breed' => 'required|min:1',
+            'weight' => 'required|min:1',
+            'age' => 'required|min:1',
+            ]);
+        $pet = new Pet;
+        $pet->name = $request->input('name');
+        $pet->breed = $request->input('breed');
+        $pet->weight = $request->input('weight');
+        $pet->age = $request->input('age');
+        $pet->photo_path = $request->input('photo_path') ?? "";
+        $pet->owner_id = $request->input('owner_id');
+
+        $pet->save();
+
+        session()->flash('success_message', 'Pet added! Woof woof');
+
+        return redirect()->action('PetController@find_owners_pets', [$pet->owner_id]);
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+
     public function find_owners_pets($owner_id)
     {
         $pets = Pet::where('owner_id', $owner_id)->get();
@@ -54,35 +56,18 @@ class PetController extends Controller
         return view('owners.owner_pets', compact('pets', 'owner'));
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+
     public function edit($id)
     {
         //
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+
     public function update(Request $request, $id)
     {
         //
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function destroy($id)
     {
         //

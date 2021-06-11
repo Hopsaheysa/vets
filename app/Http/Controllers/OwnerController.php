@@ -34,26 +34,35 @@ class OwnerController extends Controller
         return view('owners.search_owner', compact('results'));
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
+    public function create()
     {
-        //
+       
+      $owner = new Owner;
+      return view('owners.create', compact('owner'));  
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
+    public function store(Request $request)
     {
-        
+        $this->validate($request, [
+            'first_name' => 'required|min:1',
+            'surname' => 'required|min:1',
+            'home_address' => 'required|min:1',
+            'email' => 'required|min:1',
+            'phone' => 'required|min:1',
+            ]);
+        $owner = new Owner;
+        $owner->first_name = $request->input('first_name');
+        $owner->surname = $request->input('surname');
+        $owner->home_address = $request->input('home_address');
+        $owner->email = $request->input('email');
+        $owner->phone = $request->input('phone');
+
+        $owner->save();
+
+        session()->flash('success_message', 'Owner saved! Woof woof');
+
+        return redirect()->action('PetController@find_owners_pets', [$owner->id]);
+
     }
 
     /**
@@ -64,7 +73,9 @@ class OwnerController extends Controller
      */
     public function edit($id)
     {
-        //
+        $owner = Owner::findOrFail($id);
+
+        return view('owners.edit', compact('owner'));
     }
 
     /**
@@ -76,7 +87,22 @@ class OwnerController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+
+        $owner = Owner::findOrFail($id);
+        $owner->first_name = $request->input('first_name');
+        $owner->surname = $request->input('surname');
+        $owner->home_address = $request->input('home_address');
+        $owner->email = $request->input('email');
+        $owner->phone = $request->input('phone');
+
+        $owner->save();
+
+        session()->flash('success_message', 'Owner saved! Woof woof');
+
+        return redirect()->action('PetController@find_owners_pets', [$owner->id]);
+
+
+        
     }
 
     /**
